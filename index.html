@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bharath B | Front-End Developer Portfolio</title>
+<meta name="description" content="Bharath B - Computer Science Engineering student and Softwarer Developer portfolio.">
+<style>
+:root{
+  --bg:#f7f8fc;--card:#fff;--text:#172033;--muted:#647089;--primary:#6c5ce7;
+  --secondary:#00b894;--border:#e7e9f2;--shadow:0 15px 45px rgba(31,41,75,.10)
+}
+*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:.3s}
+body.dark{--bg:#0d1220;--card:#151d30;--text:#f3f5ff;--muted:#aeb7cc;--border:#28334b;--shadow:0 15px 45px rgba(0,0,0,.28)}
+a{text-decoration:none;color:inherit}
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+body.dark header{background:rgba(13,18,32,.86)}
+.nav{max-width:1150px;margin:auto;height:72px;padding:0 22px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:28px;font-weight:900;color:var(--primary)}
+nav{display:flex;gap:26px;align-items:center}
+nav a{font-weight:700;color:var(--muted);transition:.25s}
+nav a:hover{color:var(--primary)}
+.actions{display:flex;gap:9px}
+.icon-btn{width:42px;height:42px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;cursor:pointer;font-size:19px}
+.menu{display:none}
+section{max-width:1150px;margin:auto;padding:100px 22px}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding-top:120px}
+.hero-grid{width:100%;display:grid;grid-template-columns:1fr 1.25fr;gap:70px;align-items:center}
+.photo-wrap{display:flex;justify-content:center;position:relative}
+.photo-wrap:before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;border:2px dashed var(--primary);animation:spin 18s linear infinite}
+.photo{width:280px;height:280px;border-radius:50%;object-fit:cover;border:7px solid var(--card);box-shadow:var(--shadow);position:relative;z-index:2}
+@keyframes spin{to{transform:rotate(360deg)}}
+.badge{display:inline-block;padding:8px 15px;border-radius:30px;background:rgba(108,92,231,.12);color:var(--primary);font-weight:800;margin-bottom:18px}
+h1{font-size:clamp(42px,6vw,72px);line-height:1.05;margin-bottom:12px}
+.gradient{background:linear-gradient(90deg,var(--primary),var(--secondary));-webkit-background-clip:text;color:transparent}
+.hero h2{font-size:clamp(22px,3vw,34px);margin-bottom:15px}
+#typing{color:var(--primary)}
+.hero p{color:var(--muted);max-width:650px;font-size:18px}
+.buttons{display:flex;gap:13px;flex-wrap:wrap;margin-top:28px}
+.btn{padding:13px 21px;border-radius:12px;font-weight:800;border:1px solid var(--border);transition:.25s;display:inline-block}
+.btn.primary{background:var(--primary);color:white;border-color:var(--primary)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(108,92,231,.2)}
+.title{text-align:center;margin-bottom:45px}
+.title h2{font-size:38px}
+.title p{color:var(--muted)}
+.about-card{background:var(--card);border:1px solid var(--border);padding:35px;border-radius:24px;box-shadow:var(--shadow)}
+.about-card p{color:var(--muted);font-size:17px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.stat{text-align:center;padding:22px;border-radius:18px;background:rgba(108,92,231,.07)}
+.stat strong{display:block;font-size:28px;color:var(--primary)}
+.stat span{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--border);padding:25px;border-radius:20px;box-shadow:var(--shadow);transition:.3s}
+.card:hover{transform:translateY(-8px)}
+.card .emoji{font-size:35px;margin-bottom:10px}
+.card h3{margin-bottom:7px}
+.card p{color:var(--muted)}
+.skill{margin-top:16px}
+.skill-top{display:flex;justify-content:space-between;font-weight:700}
+.bar{height:9px;background:var(--border);border-radius:20px;margin-top:7px;overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:20px;transition:1.4s}
+.project-card{display:flex;flex-direction:column;min-height:245px}
+.project-card .tag{margin-top:auto;color:var(--primary);font-weight:800}
+.contact-box{text-align:center;background:linear-gradient(135deg,rgba(108,92,231,.13),rgba(0,184,148,.10));border:1px solid var(--border);padding:55px 25px;border-radius:28px}
+.contact-box p{color:var(--muted);margin:10px auto 25px;max-width:650px}
+footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);color:var(--muted)}
+.reveal{opacity:0;transform:translateY(35px);transition:.8s}
+.reveal.show{opacity:1;transform:none}
+.progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary));z-index:2000;width:0}
+@media(max-width:850px){
+  nav{position:absolute;top:72px;left:15px;right:15px;display:none;flex-direction:column;background:var(--card);padding:20px;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)}
+  nav.open{display:flex}
+  .menu{display:block}
+  .hero-grid{grid-template-columns:1fr;text-align:center;gap:45px}
+  .hero p{margin:auto}
+  .buttons{justify-content:center}
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  section{padding:80px 16px}
+  .photo{width:210px;height:210px}
+  .photo-wrap:before{width:245px;height:245px}
+  .stats,.grid{grid-template-columns:1fr}
+  .hero{padding-top:115px}
+  .title h2{font-size:31px}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<header>
+  <div class="nav">
+    <a href="#home" class="logo">B.</a>
+    <nav id="nav">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a>
+      <a href="#projects">Projects</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn menu" id="menu" aria-label="Open menu">☰</button>
+      <button class="icon-btn" id="theme" aria-label="Toggle theme">🌙</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="photo-wrap reveal">
+      <img class="photo" src="profile.jpg" alt="Bharath B profile photo">
+    </div>
+    <div class="reveal">
+      <span class="badge">Welcome to my portfolio 👋</span>
+      <h1>Hi, I'm <span class="gradient">Bharath B</span></h1>
+      <h2>I'm a <span id="typing"></span></h2>
+      <p>Computer Science Engineering student passionate about building responsive web applications, React projects and practical AI-powered solutions.</p>
+      <div class="buttons">
+        <a class="btn primary" href="#projects">View My Projects</a>
+        <a class="btn" href="#contact">Contact Me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="title reveal"><h2>About Me</h2><p>A little about my journey</p></div>
+  <div class="about-card reveal">
+    <p>I am a 4th-year Computer Science Engineering student interested in Front-End Development. I enjoy creating clean, user-friendly interfaces and learning modern technologies through real-world projects. I have worked with HTML, CSS, JavaScript, React.js, Node.js and Power BI, and I enjoy teamwork and continuous learning.</p>
+    <div class="stats">
+      <div class="stat"><strong>4th</strong><span>Year CSE</span></div>
+      <div class="stat"><strong>5+</strong><span>Projects</span></div>
+      <div class="stat"><strong>∞</strong><span>Learning</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="title reveal"><h2>My Skills</h2><p>Technologies I work with</p></div>
+  <div class="grid">
+    <div class="card reveal"><div class="emoji">🌐</div><h3>HTML</h3><p>Semantic and structured web pages.</p><div class="skill"><div class="skill-top"><span>HTML</span><span>90%</span></div><div class="bar"><div class="fill" data-width="90%"></div></div></div></div>
+    <div class="card reveal"><div class="emoji">🎨</div><h3>CSS</h3><p>Responsive layouts and modern UI styling.</p><div class="skill"><div class="skill-top"><span>CSS</span><span>85%</span></div><div class="bar"><div class="fill" data-width="85%"></div></div></div></div>
+    <div class="card reveal"><div class="emoji">⚡</div><h3>JavaScript</h3><p>Interactive and dynamic web experiences.</p><div class="skill"><div class="skill-top"><span>JavaScript</span><span>80%</span></div><div class="bar"><div class="fill" data-width="80%"></div></div></div></div>
+    <div class="card reveal"><div class="emoji">⚛️</div><h3>React.js</h3><p>Reusable components and state-driven interfaces.</p><div class="skill"><div class="skill-top"><span>React.js</span><span>80%</span></div><div class="bar"><div class="fill" data-width="80%"></div></div></div></div>
+    <div class="card reveal"><div class="emoji">🟢</div><h3>Node.js</h3><p>Backend APIs and application development.</p><div class="skill"><div class="skill-top"><span>Node.js</span><span>70%</span></div><div class="bar"><div class="fill" data-width="70%"></div></div></div></div>
+    <div class="card reveal"><div class="emoji">📊</div><h3>Power BI</h3><p>Dashboards, data visualization and analytics.</p><div class="skill"><div class="skill-top"><span>Power BI</span><span>75%</span></div><div class="bar"><div class="fill" data-width="75%"></div></div></div></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="title reveal"><h2>My Projects</h2><p>Some of the projects I have built</p></div>
+  <div class="grid">
+    <div class="card project-card reveal"><div class="emoji">👨‍💼</div><h3>Employee Directory</h3><p>A responsive React application with employee search, filtering, profiles and CRUD-style functionality.</p><div class="tag">React.js • JavaScript • CSS</div></div>
+    <div class="card project-card reveal"><div class="emoji">🤖</div><h3>AI Study Assistant</h3><p>An AI-powered study application designed to help students create learning plans and study more effectively.</p><div class="tag">React • Node.js • Express</div></div>
+    <div class="card project-card reveal"><div class="emoji">📈</div><h3>Power BI Dashboard</h3><p>An interactive data dashboard using visualizations and analytics to turn data into useful insights.</p><div class="tag">Power BI • Data Analytics</div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-box reveal">
+    <h2>Let's Connect 🚀</h2>
+    <p>I'm open to opportunities, projects, internships and collaborations. Feel free to reach out.</p>
+    <div class="buttons" style="justify-content:center">
+      <a class="btn primary" href="mailto:bharathb0998@gmail.com">📧 Email Me</a>
+      <a class="btn" href="https://github.com/bharathb0998-tech" target="_blank">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/bharath-b-85541430a" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Bharath B • Built with HTML, CSS & JavaScript ❤️</footer>
+
+<script>
+const roles=["Front-End Developer","React.js Developer","Creative Web Developer","AI Project Builder"];
+let r=0,c=0,del=false;
+function type(){
+  const el=document.getElementById("typing"), word=roles[r];
+  el.textContent=word.slice(0,c);
+  if(!del&&c<word.length){c++;setTimeout(type,90)}
+  else if(!del){del=true;setTimeout(type,1100)}
+  else if(c>0){c--;setTimeout(type,45)}
+  else{del=false;r=(r+1)%roles.length;setTimeout(type,250)}
+}
+type();
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){
+    e.target.classList.add("show");
+    e.target.querySelectorAll?.(".fill").forEach(x=>x.style.width=x.dataset.width);
+  }});
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(x=>observer.observe(x));
+
+document.getElementById("theme").onclick=()=>{
+  document.body.classList.toggle("dark");
+  document.getElementById("theme").textContent=document.body.classList.contains("dark")?"☀️":"🌙";
+};
+document.getElementById("menu").onclick=()=>document.getElementById("nav").classList.toggle("open");
+document.querySelectorAll("nav a").forEach(a=>a.onclick=()=>document.getElementById("nav").classList.remove("open"));
+
+window.addEventListener("scroll",()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById("progress").style.width=(scrollY/h*100)+"%";
+});
+</script>
+</body>
+</html>
